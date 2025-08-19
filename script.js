@@ -3,6 +3,7 @@ function createTiles(container) {
   for (let row = 0; row < 30; row++) {
     for (let col = 0; col < 100; col++) {
       const tile = document.createElement("div");
+      tile.classList.add("cell");
 
       // grass
       if (row == 11) tile.classList.add("grass");
