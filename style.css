@@ -30,3 +30,7 @@ body {
   background-image: url("assets/images/blocks/bedrock.webp");
   background-size: cover;
 }
+
+.cell:hover {
+  border: black 0.5px solid;
+}
