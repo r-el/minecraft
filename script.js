@@ -1,3 +1,4 @@
+// Create all the tiles
 function createTiles(container) {
   for (let row = 0; row < 30; row++) {
     for (let col = 0; col < 100; col++) {
@@ -19,3 +20,30 @@ function createTiles(container) {
 
 const container = document.getElementById("container");
 createTiles(container);
+
+const inventory = {
+  grass: 0,
+  dirt: 0,
+  stone: 0,
+  bedrock: 0,
+};
+
+// Add event listeners to each tile
+function addEventListenersToTiles(container) {
+  const tiles = container.querySelectorAll("div");
+
+  tiles.forEach((tile) => {
+    tile.addEventListener("click", () => {
+      const classes = Array.from(tile.classList);
+      classes.forEach((cls) => {
+        if (inventory.hasOwnProperty(cls)) {
+          inventory[cls]++;
+          tile.classList.remove(cls);
+        }
+      });
+      console.log("Updated counters:", inventory);
+    });
+  });
+}
+
+addEventListenersToTiles(container);
