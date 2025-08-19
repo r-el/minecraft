@@ -1,6 +1,7 @@
 body {
   margin: 0;
 }
+
 #container {
   width: 4800px;
   height: 1440px;
@@ -8,4 +9,24 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, 3rem);
   grid-template-rows: repeat(auto-fill, 3rem);
+}
+
+.grass {
+  background-image: url("assets/images/blocks/grass.webp");
+  background-size: cover;
+}
+
+.dirt {
+  background-image: url("assets/images/blocks/dirt.webp");
+  background-size: cover;
+}
+
+.stone {
+  background-image: url("assets/images/blocks/stone.webp");
+  background-size: cover;
+}
+
+.bedrock {
+  background-image: url("assets/images/blocks/bedrock.webp");
+  background-size: cover;
 }
