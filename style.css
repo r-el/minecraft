@@ -1,7 +1,7 @@
 body {
   margin: 0;
 }
-.continer {
+#container {
   width: 4800px;
   height: 1440px;
   background-color: #87ceeb;
