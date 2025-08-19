@@ -1,22 +1,21 @@
-const container = document.getElementById("container");
-for (let row = 0; row < 30; row++) {
-  for (let col = 0; col < 100; col++) {
-    const tile = document.createElement("div");
+function createTiles(container) {
+  for (let row = 0; row < 30; row++) {
+    for (let col = 0; col < 100; col++) {
+      const tile = document.createElement("div");
 
-    if (row == 11) {
       // grass
-      tile.classList.add("grass");
-    } else if (row >= 12 && row <= 15) {
+      if (row == 11) tile.classList.add("grass");
       // Dirt
-      tile.classList.add("dirt");
-    } else if (row >= 16 && row <= 28) {
+      else if (row >= 12 && row <= 15) tile.classList.add("dirt");
       // Stone
-      tile.classList.add("stone");
-    } else if (row >= 29) {
+      else if (row >= 16 && row <= 28) tile.classList.add("stone");
       // bedrock
-      tile.classList.add("bedrock");
-    }
+      else if (row >= 29) tile.classList.add("bedrock");
 
-    container.appendChild(tile);
+      container.appendChild(tile);
+    }
   }
 }
+
+const container = document.getElementById("container");
+createTiles(container);
