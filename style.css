@@ -32,5 +32,48 @@ body {
 }
 
 .cell:hover {
-  border: black 0.5px solid;
+  border: 0.5px solid black;
+}
+
+/* ////////// */
+#menu {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: no-repeat center url("assets/images/menu-background.jpg");
+  background-size: cover;
+  z-index: 1;
+}
+
+
+#menu img {
+  margin-bottom: 1%;
+}
+
+button {
+  margin: 0.5%;
+  width: 30%;
+  height: auto;
+  font-size: 200%;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  color: wheat;
+  background-color: rgb(146, 125, 98);
+  /* font-family: inherit; */
+  border: 1px solid rgb(158, 156, 127);
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.menuNone{
+  display: none !important; 
 }

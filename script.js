@@ -48,3 +48,10 @@ function addEventListenersToTiles(container) {
 }
 
 addEventListenersToTiles(container);
+
+const newGame = document.getElementById("newGame");
+const menu = document.getElementById("menu")
+newGame.addEventListener("click", (event) => {
+menu.classList.toggle("menuNone");
+
+});
