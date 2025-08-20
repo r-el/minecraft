@@ -1,5 +1,5 @@
 let selectTool = null;
-document.querySelectorAll("#tools button").forEach(btn => {
+document.querySelectorAll("#tools button").forEach((btn) => {
   btn.addEventListener("click", () => {
     selectTool = btn.dataset.tool;
     console.log("Select Tool:", selectTool);
@@ -21,9 +21,9 @@ function createTiles(container) {
       else if (row >= 16 && row <= 28) tile.classList.add("stone");
       // bedrock
       else if (row >= 29) tile.classList.add("bedrock");
-      tile.addEventListener('click', () => {
+      tile.addEventListener("click", () => {
         clickTool(tile);
-      })
+      });
 
       container.appendChild(tile);
     }
@@ -38,48 +38,38 @@ const inventory = {
   dirt: 0,
   stone: 0,
   leaves: 0,
-  oaklog: 0
+  oaklog: 0,
 };
 
 function clickTool(tile) {
-
   if (!selectTool) {
     console.log("לא נבחר כלי");
     return;
-
   }
 
-  if (selectTool === 'A' && tile.classList.contains('grass')) {
+  if (selectTool === "A" && tile.classList.contains("grass")) {
     inventory.grass += 1;
-    tile.classList.remove('grass');
-    console.log('כמות הפעמים',inventory.grass)
-
+    tile.classList.remove("grass");
+    console.log("כמות הפעמים", inventory.grass);
   }
 
-  if (selectTool === 'A' && tile.classList.contains('dirt')) {
+  if (selectTool === "A" && tile.classList.contains("dirt")) {
     inventory.dirt += 1;
-    tile.classList.remove('dirt');
+    tile.classList.remove("dirt");
   }
 
-
-  if (selectTool === 'B' && tile.classList.contains('stone')) {
-    inventory.stone += 1
-    tile.classList.remove('stone');
-
+  if (selectTool === "B" && tile.classList.contains("stone")) {
+    inventory.stone += 1;
+    tile.classList.remove("stone");
   }
 
-  if (selectTool === 'C' && tile.classList.contains('leaves')) {
+  if (selectTool === "C" && tile.classList.contains("leaves")) {
     inventory.leaves += 1;
-    tile.classList.remove('leaves');
-
+    tile.classList.remove("leaves");
   }
 
-  if (selectTool === 'D' && tile.classList.contains('oaklog')) {
+  if (selectTool === "D" && tile.classList.contains("oaklog")) {
     inventory.oaklog += 1;
-    tile.classList.remove('oaklog');
-
+    tile.classList.remove("oaklog");
   }
-
-
 }
-
