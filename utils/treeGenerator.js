@@ -11,7 +11,7 @@ import { Cell } from "../models/Cell.js";
  * Each leaf layer expands at an increasing distance from the center, and the row thickness allows
  * for vertical density of the leaves.
  */
-export function generateLeafRows(centerCell, leafDepth, rowThickness = 2) {
+export function getLeafMatrix(centerCell, leafDepth, rowThickness = 2) {
   const rows = [];
 
   for (let leafLevel = 0; leafLevel < leafDepth; leafLevel++) {
