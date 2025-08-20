@@ -1,8 +1,9 @@
-let selectTool = null;
+let selectedTool = "";
 document.querySelectorAll("#tools button").forEach((btn) => {
   btn.addEventListener("click", () => {
-    selectTool = btn.dataset.tool;
-    console.log("Select Tool:", selectTool);
+    selectedTool = btn.dataset.tool;
+    changeCursor(selectedTool);
+    console.log("Select Tool:", selectedTool);
   });
 });
 
@@ -42,34 +43,43 @@ const inventory = {
 };
 
 function clickTool(tile) {
-  if (!selectTool) {
+  if (!selectedTool) {
     console.log("לא נבחר כלי");
     return;
   }
 
-  if (selectTool === "A" && tile.classList.contains("grass")) {
+  if (selectedTool === "shovel" && tile.classList.contains("grass")) {
     inventory.grass += 1;
     tile.classList.remove("grass");
     console.log("כמות הפעמים", inventory.grass);
   }
 
-  if (selectTool === "A" && tile.classList.contains("dirt")) {
+  if (selectedTool === "shovel" && tile.classList.contains("dirt")) {
     inventory.dirt += 1;
     tile.classList.remove("dirt");
   }
 
-  if (selectTool === "B" && tile.classList.contains("stone")) {
+  if (selectedTool === "pickaxe" && tile.classList.contains("stone")) {
     inventory.stone += 1;
     tile.classList.remove("stone");
   }
 
-  if (selectTool === "C" && tile.classList.contains("leaves")) {
+  if (selectedTool === "shears" && tile.classList.contains("leaves")) {
     inventory.leaves += 1;
     tile.classList.remove("leaves");
   }
 
-  if (selectTool === "D" && tile.classList.contains("oaklog")) {
+  if (selectedTool === "axe" && tile.classList.contains("oaklog")) {
     inventory.oaklog += 1;
     tile.classList.remove("oaklog");
+  }
+}
+
+// Change the cursor style based on the selected tool
+function changeCursor(selectedTool) {
+  if (selectedTool) {
+    container.style.cursor = `url(./assets/images/cursor/${selectedTool}.png), default`;
+  } else {
+    container.style.cursor = "default";
   }
 }
