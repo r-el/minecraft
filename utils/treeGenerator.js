@@ -41,3 +41,18 @@ export function getLeafMatrix(centerCell, leafDepth, rowThickness = 2) {
 export function getTrunkColumn(baseCell, trunkHeight) {
   return baseCell.getTopCells(trunkHeight);
 }
+
+/**
+ * Generates a matrix representation of trunk cells arranged vertically from a base cell.
+ *
+ * @param {Cell} baseCell - The bottom cell of the trunk (usually on grass level)
+ * @param {number} trunkHeight - Height of the trunk in cells
+ * @returns {Cell[][]} A matrix where each row contains one trunk cell
+ *
+ * Each row in the matrix contains a single trunk cell, making it compatible with
+ * other matrix-based functions in the tree generation system.
+ */
+export function getTrunkMatrixRows(baseCell, trunkHeight) {
+  const trunkCells = baseCell.getTopCells(trunkHeight);
+  return trunkCells.map((cell) => [cell]);
+}
