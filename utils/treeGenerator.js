@@ -28,3 +28,16 @@ export function getLeafMatrix(centerCell, leafDepth, rowThickness = 2) {
 
   return rows;
 }
+
+/**
+ * Generates an array of trunk cells arranged vertically from a base cell.
+ *
+ * @param {Cell} baseCell - The bottom cell of the trunk (usually on grass level)
+ * @param {number} trunkHeight - Height of the trunk in cells
+ * @returns {Cell[]} An array of cells representing the trunk structure
+ *
+ * The trunk grows upward from the base cell, using the built-in getTopCells method.
+ */
+export function getTrunkColumn(baseCell, trunkHeight) {
+  return baseCell.getTopCells(trunkHeight);
+}
