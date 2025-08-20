@@ -9,6 +9,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, 3rem);
   grid-template-rows: repeat(auto-fill, 3rem);
+  cursor: default;
 }
 
 .grass {
@@ -46,6 +47,5 @@ body {
 #tools button {
   padding: 30px;
   background-color: aqua;
-    border: 0;
-
+  border: 0;
 }
