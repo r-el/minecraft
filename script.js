@@ -75,6 +75,13 @@ function clickTool(tile) {
   }
 }
 
+
+const newGame = document.getElementById("newGame");
+const menu = document.getElementById("menu")
+newGame.addEventListener("click", (event) => {
+  menu.classList.toggle("menuNone");
+});
+
 // Change the cursor style based on the selected tool
 function changeCursor(selectedTool) {
   if (selectedTool) {

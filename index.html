@@ -7,8 +7,15 @@
     <link rel="stylesheet" href="style.css" />
   </head>
 
-  <body>
+<body>
+    <div id="menu">
+        <img src="/assets/images/mainlogo.png" alt="Entry view" height="20%" width="50%">
+        <button id="newGame"> New Game</button>
+        <button id="continueGame" onclick=continueGame()> Continue Game</button>
+    </div>
+  
     <section id="container"></section>
+  
     <div id="tools">
       <button data-tool="shovel">
         <img src="assets/images/cursor/shovel.png" alt="" />
@@ -23,6 +30,7 @@
         <img src="assets/images/cursor/axe.png" alt="" />
       </button>
     </div>
+  
     <script src="script.js" defer></script>
   </body>
 </html>
