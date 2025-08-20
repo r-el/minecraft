@@ -1,4 +1,4 @@
-let selectedTool = null;
+let selectedTool = "";
 document.querySelectorAll("#tools button").forEach((btn) => {
   btn.addEventListener("click", () => {
     selectedTool = btn.dataset.tool;
@@ -48,28 +48,28 @@ function clickTool(tile) {
     return;
   }
 
-  if (selectedTool === "A" && tile.classList.contains("grass")) {
+  if (selectedTool === "shovel" && tile.classList.contains("grass")) {
     inventory.grass += 1;
     tile.classList.remove("grass");
     console.log("כמות הפעמים", inventory.grass);
   }
 
-  if (selectedTool === "A" && tile.classList.contains("dirt")) {
+  if (selectedTool === "shovel" && tile.classList.contains("dirt")) {
     inventory.dirt += 1;
     tile.classList.remove("dirt");
   }
 
-  if (selectedTool === "B" && tile.classList.contains("stone")) {
+  if (selectedTool === "pickaxe" && tile.classList.contains("stone")) {
     inventory.stone += 1;
     tile.classList.remove("stone");
   }
 
-  if (selectedTool === "C" && tile.classList.contains("leaves")) {
+  if (selectedTool === "shears" && tile.classList.contains("leaves")) {
     inventory.leaves += 1;
     tile.classList.remove("leaves");
   }
 
-  if (selectedTool === "D" && tile.classList.contains("oaklog")) {
+  if (selectedTool === "axe" && tile.classList.contains("oaklog")) {
     inventory.oaklog += 1;
     tile.classList.remove("oaklog");
   }
