@@ -1,3 +1,5 @@
+let selectedTool = "";
+
 // Create all the tiles
 function createTiles(container) {
   for (let row = 0; row < 30; row++) {
@@ -45,6 +47,15 @@ function addEventListenersToTiles(container) {
       console.log("Updated counters:", inventory);
     });
   });
+}
+
+// Change the cursor style based on the selected tool
+function changeCursor(selectedTool) {
+  if (selectedTool) {
+    container.style.cursor = `url(./assets/images/cursor/${selectedTool}.png), default`;
+  } else {
+    container.style.cursor = "default";
+  }
 }
 
 addEventListenersToTiles(container);
