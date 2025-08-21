@@ -72,14 +72,14 @@ function clickTool(tile) {
     tile.classList.remove("stone");
   }
 
-  if (selectedTool === "shears" && tile.classList.contains("leaves")) {
+  if (selectedTool === "shears" && tile.classList.contains("oak-leaves")) {
     inventory.leaves += 1;
-    tile.classList.remove("leaves");
+    tile.classList.remove("oak-leaves");
   }
 
-  if (selectedTool === "axe" && tile.classList.contains("oaklog")) {
+  if (selectedTool === "axe" && tile.classList.contains("oak-log")) {
     inventory.oaklog += 1;
-    tile.classList.remove("oaklog");
+    tile.classList.remove("oak-log");
   }
 }
 
