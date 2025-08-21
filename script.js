@@ -28,9 +28,10 @@ document.querySelectorAll("#inventory button").forEach((btn) => {
 
 // Create all the tiles
 function createTiles(container) {
+  let tile = ""
   for (let row = 0; row < 30; row++) {
     for (let col = 0; col < 100; col++) {
-      const tile = document.createElement("div");
+      tile = document.createElement("div");
       // New coordinate system:
       // Y=0 is bottom row, increases upward
       // X is column (left to right)
@@ -41,16 +42,12 @@ function createTiles(container) {
 
       // grass (y=18 from bottom, which is the grass level)
       if (y == 18) tile.classList.add("grass");
-      // Dirt  
+      // Dirt
       else if (y >= 14 && y <= 17) tile.classList.add("dirt");
       // Stone
       else if (y >= 1 && y <= 13) tile.classList.add("stone");
       // bedrock
       else if (y == 0) tile.classList.add("bedrock");
-      tile.addEventListener("click", () => {
-        clickTool(tile);
-      });
-
       container.appendChild(tile);
     }
   }
@@ -78,6 +75,10 @@ function updateInventoryDisplay() {
     btn.disabled = inventory[item] === 0;
   });
 }
+
+container.addEventListener("click", (event) => {
+    clickTool(event.target);
+});
 
 function clickTool(tile) {
   // Handle placing items from inventory
@@ -164,11 +165,11 @@ function initGame() {
   createTiles(container);
   updateInventoryDisplay();
   addRandomTrees(10, {
-  grassY: 18, // Updated grass level
-  gridWidth: 100,
-  minDistance: 10,
-  maxAttempts: 100
-});
+    grassY: 18, // Updated grass level
+    gridWidth: 100,
+    minDistance: 10,
+    maxAttempts: 100,
+  });
   hideMenu();
 }
 
