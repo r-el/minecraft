@@ -1,3 +1,5 @@
+import { addRandomTrees } from "./utils/treeGenerator.js";
+
 // Create all the tiles
 function createTiles(container) {
   for (let row = 0; row < 30; row++) {
@@ -54,3 +56,11 @@ function addEventListenersToTiles(container) {
 }
 
 addEventListenersToTiles(container);
+
+// Add random trees with proper spacing using new coordinate system
+addRandomTrees(10, {
+  grassY: 18, // Updated grass level
+  gridWidth: 100,
+  minDistance: 10,
+  maxAttempts: 100
+});
