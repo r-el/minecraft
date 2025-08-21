@@ -129,3 +129,53 @@ button:hover {
   width: 40px;
   height: 40px;
 }
+
+#inventory {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 60px;
+  right: 20px;
+  gap: 5px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#inventory h3 {
+  color: white;
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  text-align: center;
+}
+
+#inventory button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 80px;
+}
+
+#inventory button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#inventory button:not(:disabled):hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+#inventory button img {
+  width: 30px;
+  height: 30px;
+}
+
+#inventory .item-count {
+  color: white;
+  font-weight: bold;
+  min-width: 20px;
+}
