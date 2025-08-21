@@ -1,17 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
 <body>
-    <section id="container">
-    </section>
+    <div id="menu">
+        <img src="/assets/images/mainlogo.png" alt="Entry view" height="20%" width="50%">
+        <button id="newGame"> New Game</button>
+        <button id="continueGame" onclick=continueGame()> Continue Game</button>
+    </div>
+  
+    <section id="container"></section>
+  
+    <div id="tools">
+      <button data-tool="shovel">
+        <img src="assets/images/cursor/shovel.png" alt="" />
+      </button>
+      <button data-tool="pickaxe">
+        <img src="assets/images/cursor/pickaxe.png" alt="" />
+      </button>
+      <button data-tool="shears">
+        <img src="assets/images/cursor/shears.png" alt="" />
+      </button>
+      <button data-tool="axe">
+        <img src="assets/images/cursor/axe.png" alt="" />
+      </button>
+    </div>
+  
     <script type="module" src="script.js" defer></script>
-</body>
-
+  </body>
 </html>
