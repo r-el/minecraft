@@ -20,7 +20,7 @@ export function getLeafMatrix(centerCell, leafDepth, rowThickness = 2) {
 
     // Repeat the base row vertically for the specified thickness
     for (let repeatIdx = 0; repeatIdx < rowThickness; repeatIdx++) {
-      // Calculate the y position for this row based on the leaf level and thickness
+      // Calculate the y position for this row - UPWARD from center (increasing Y)
       const y = centerCell.y + (leafLevel * rowThickness + repeatIdx);
       rows.push(baseRow.map(({ x }) => new Cell(x, y)));
     }
