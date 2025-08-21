@@ -1,11 +1,28 @@
 import { addRandomTrees } from "./utils/treeGenerator.js";
 
 let selectedTool = "";
+let selectedItem = ""; // Track selected inventory item for placing
+
+// Handle tool selection
 document.querySelectorAll("#tools button").forEach((btn) => {
   btn.addEventListener("click", () => {
     selectedTool = btn.dataset.tool;
+    selectedItem = ""; // Clear selected item when tool is selected
     changeCursor(selectedTool);
     console.log("Select Tool:", selectedTool);
+  });
+});
+
+// Handle inventory item selection
+document.querySelectorAll("#inventory button").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const item = btn.dataset.item;
+    if (inventory[item] > 0) { // Only select if we have items
+      selectedItem = item;
+      selectedTool = ""; // Clear selected tool when item is selected
+      changeCursor(selectedItem);
+      console.log("Select Item:", selectedItem);
+    }
   });
 });
 
@@ -47,11 +64,54 @@ const inventory = {
   oaklog: 0,
 };
 
+// Update inventory display
+function updateInventoryDisplay() {
+  document.querySelectorAll("#inventory button").forEach((btn) => {
+    const item = btn.dataset.item;
+    const countSpan = btn.querySelector(".item-count");
+    countSpan.textContent = inventory[item];
+    
+    // Disable button if no items available
+    btn.disabled = inventory[item] === 0;
+  });
+}
+
 container.addEventListener("click", (event) => {
     clickTool(event.target);
-  });
+});
 
 function clickTool(tile) {
+  // Handle placing items from inventory
+  if (selectedItem) {
+    // Check if tile is empty (no background class except basic cell)
+    const hasBlock = tile.classList.length > 1; // More than just 'cell' class
+    
+    if (!hasBlock && inventory[selectedItem] > 0) {
+      // Add the item class to the tile
+      if (selectedItem === "oaklog") {
+        tile.classList.add("oak-log");
+      } else if (selectedItem === "leaves") {
+        tile.classList.add("oak-leaves");
+      } else {
+        tile.classList.add(selectedItem);
+      }
+      
+      // Reduce inventory count
+      inventory[selectedItem] -= 1;
+      updateInventoryDisplay();
+      
+      // Clear selection if no more items
+      if (inventory[selectedItem] === 0) {
+        selectedItem = "";
+        changeCursor("");
+      }
+      
+      console.log(`Placed ${selectedItem}, remaining: ${inventory[selectedItem]}`);
+    }
+    return;
+  }
+
+  // Handle tool usage (existing logic)
   if (!selectedTool) {
     console.log("לא נבחר כלי");
     return;
@@ -60,27 +120,32 @@ function clickTool(tile) {
   if (selectedTool === "shovel" && tile.classList.contains("grass")) {
     inventory.grass += 1;
     tile.classList.remove("grass");
+    updateInventoryDisplay();
     console.log("כמות הפעמים", inventory.grass);
   }
 
   if (selectedTool === "shovel" && tile.classList.contains("dirt")) {
     inventory.dirt += 1;
     tile.classList.remove("dirt");
+    updateInventoryDisplay();
   }
 
   if (selectedTool === "pickaxe" && tile.classList.contains("stone")) {
     inventory.stone += 1;
     tile.classList.remove("stone");
+    updateInventoryDisplay();
   }
 
-  if (selectedTool === "shears" && tile.classList.contains("leaves")) {
+  if (selectedTool === "shears" && tile.classList.contains("oak-leaves")) {
     inventory.leaves += 1;
-    tile.classList.remove("leaves");
+    tile.classList.remove("oak-leaves");
+    updateInventoryDisplay();
   }
 
-  if (selectedTool === "axe" && tile.classList.contains("oaklog")) {
+  if (selectedTool === "axe" && tile.classList.contains("oak-log")) {
     inventory.oaklog += 1;
-    tile.classList.remove("oaklog");
+    tile.classList.remove("oak-log");
+    updateInventoryDisplay();
   }
 }
 
@@ -95,8 +160,10 @@ function hideMenu() {
 function initGame() {
   container.textContent = "";
   selectedTool = "";
-  changeCursor(selectedTool);
+  selectedItem = "";
+  changeCursor("");
   createTiles(container);
+  updateInventoryDisplay();
   addRandomTrees(10, {
     grassY: 18, // Updated grass level
     gridWidth: 100,
@@ -117,10 +184,12 @@ BackMenu.addEventListener("click", () => {
   menu.classList.toggle("menuNone");
 });
 
-// Change the cursor style based on the selected tool
-function changeCursor(selectedTool) {
+// Change the cursor style based on the selected tool or item
+function changeCursor(selected) {
   if (selectedTool) {
     container.style.cursor = `url(./assets/images/cursor/${selectedTool}.png), default`;
+  } else if (selectedItem) {
+    container.style.cursor = `url(./assets/images/blocks/${selectedItem}.webp), default`;
   } else {
     container.style.cursor = "default";
   }
