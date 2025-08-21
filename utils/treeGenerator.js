@@ -87,3 +87,21 @@ function createTrunk(baseCell, height) {
 
   return trunkCells;
 }
+
+/**
+ * Creates leaves around tree top
+ */
+function createLeaves(topCell, leafDepth = 3, leafThickness = 2) {
+  const leafCells = getLeafCells(topCell, leafDepth, leafThickness);
+
+  leafCells.forEach((cell) => {
+    const element = document.getElementById(`${cell.y},${cell.x}`);
+    if (element && cell.y <= 29) {
+      // Check upper bound instead of lower
+      element.classList.remove("grass", "dirt", "stone");
+      element.classList.add("oak-leaves");
+    }
+  });
+
+  return leafCells;
+}
