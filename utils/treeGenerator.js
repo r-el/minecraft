@@ -30,6 +30,20 @@ export function getLeafMatrix(centerCell, leafDepth, rowThickness = 2) {
 }
 
 /**
+ * Generates an array of leaf cells arranged in rows around a central cell.
+ * @param {Cell} centerCell - The central cell from which the leaves spread
+ * @param {number} leafDepth - Number of leaf layers to generate
+ * @param {number} [rowThickness=2] - Number of rows to repeat for each leaf layer
+ * @returns {Cell[]} An array of cells representing the leaf structure
+ * Each leaf layer expands at an increasing distance from the center, and the row thickness allows
+ * for vertical density of the leaves.
+ */
+export function getLeafCells(centerCell, leafDepth, rowThickness = 2) {
+  const leafMatrix = getLeafMatrix(centerCell, leafDepth, rowThickness);
+  return leafMatrix.flat(); // Flatten the matrix into a single array of cells
+}
+
+/**
  * Generates an array of trunk cells arranged vertically from a base cell.
  *
  * @param {Cell} baseCell - The bottom cell of the trunk (usually on grass level)
