@@ -123,3 +123,11 @@ function createTree(x, grassY = 18) {
 
   return { x, trunkHeight, trunkCells, leafCells };
 }
+
+/**
+ * Checks if tree position has enough space
+ */
+function hasValidPosition(x, existingTrees, minDistance = 8) {
+  return !existingTrees.some((treeX) => Math.abs(treeX - x) < minDistance);
+}
+
