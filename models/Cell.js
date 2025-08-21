@@ -45,7 +45,7 @@ export class Cell {
   getTopCells(limit = 1) {
     const cells = [];
     for (let i = 1; i <= limit; i++) {
-      cells.push(new Cell(this.x, this.y - i));
+      cells.push(new Cell(this.x, this.y + i)); // Y increases upward
     }
     return cells;
   }
@@ -57,7 +57,7 @@ export class Cell {
   getBottomCells(limit = 1) {
     const cells = [];
     for (let i = 1; i <= limit; i++) {
-      cells.push(new Cell(this.x, this.y + i));
+      cells.push(new Cell(this.x, this.y - i)); // Y decreases downward
     }
     return cells;
   }
