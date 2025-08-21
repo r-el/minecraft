@@ -105,3 +105,21 @@ function createLeaves(topCell, leafDepth = 3, leafThickness = 2) {
 
   return leafCells;
 }
+
+/**
+ * Creates one complete tree
+ */
+function createTree(x, grassY = 18) {
+  // Grass now hardcoded in level 18 TODO: make it dynamic
+  const trunkHeight = 3 + Math.floor(Math.random() * 3); // 3-5 blocks
+  const baseCell = new Cell(x, grassY); // Start from grass level
+
+  // Create trunk above grass
+  const trunkCells = createTrunk(baseCell, trunkHeight);
+
+  // Create leaves from top of trunk
+  const topCell = new Cell(x, grassY + trunkHeight); // Add height instead of subtract
+  const leafCells = createLeaves(topCell, 2, 1);
+
+  return { x, trunkHeight, trunkCells, leafCells };
+}
