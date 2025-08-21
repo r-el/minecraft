@@ -9,11 +9,6 @@ document.querySelectorAll("#tools button").forEach((btn) => {
   });
 });
 
-setTimeout(() => {
-  console.log(`5`);
-  createTiles(container);
-}, 7000);
-
 // Create all the tiles
 function createTiles(container) {
   for (let row = 0; row < 30; row++) {
@@ -101,6 +96,12 @@ function initGame() {
   selectedTool = "";
   changeCursor(selectedTool);
   createTiles(container);
+  addRandomTrees(10, {
+  grassY: 18, // Updated grass level
+  gridWidth: 100,
+  minDistance: 10,
+  maxAttempts: 100
+});
   hideMenu();
 }
 
