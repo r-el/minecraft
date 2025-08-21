@@ -70,3 +70,20 @@ export function getTrunkMatrixRows(baseCell, trunkHeight) {
   const trunkCells = baseCell.getTopCells(trunkHeight);
   return trunkCells.map((cell) => [cell]);
 }
+
+/**
+ * Creates a tree trunk at specified position
+ */
+function createTrunk(baseCell, height) {
+  const trunkCells = getTrunkColumn(baseCell, height);
+
+  trunkCells.forEach((cell) => {
+    const element = document.getElementById(`${cell.y},${cell.x}`);
+    if (element) {
+      element.classList.remove("grass", "dirt", "stone", "oak-leaves");
+      element.classList.add("oak-log");
+    }
+  });
+
+  return trunkCells;
+}
