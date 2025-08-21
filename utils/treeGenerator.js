@@ -131,3 +131,41 @@ function hasValidPosition(x, existingTrees, minDistance = 8) {
   return !existingTrees.some((treeX) => Math.abs(treeX - x) < minDistance);
 }
 
+/**
+ * Adds random trees with proper spacing
+ */
+export function addRandomTrees(treeCount = 5, options = {}) {
+  const {
+    grassY = 18, // Changed from 11 to 18
+    gridWidth = 100,
+    minDistance = 8,
+    maxAttempts = 50,
+  } = options;
+
+  const trees = [];
+  let attempts = 0;
+
+  while (trees.length < treeCount && attempts < maxAttempts) {
+    attempts++;
+
+    // Generate random position
+    const x = Math.floor(Math.random() * gridWidth);
+
+    // Check if position is valid (not too close to existing trees)
+    if (
+      hasValidPosition(
+        x,
+        trees.map((tree) => tree.x),
+        minDistance
+      )
+    ) {
+      const tree = createTree(x, grassY);
+      trees.push(tree);
+
+      console.log(`Tree ${trees.length} created at x=${x}, height=${tree.trunkHeight}`);
+    }
+  }
+
+  console.log(`Added ${trees.length} trees to the grid (${attempts} attempts)`);
+  return trees;
+}
