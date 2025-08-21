@@ -71,6 +71,31 @@ button {
 
 button:hover {
   cursor: pointer;
+  background-color:rgba(146, 125, 98, 0.833);
+}
+
+#menuOfGame{
+  position: fixed;
+  display: flex;
+  top: 5px;
+  left: 5px;
+  gap: 5px;
+
+}
+#menuOfGame button{
+  width: 100px;
+  height: 40px;
+  font-size: 15px;
+  color: wheat;
+  background-color: rgb(146, 125, 98);
+  border: 2px solid rgb(183, 181, 141);
+  border-radius: 4px;
+}
+
+#menuOfGame button:hover {
+  background-color:rgba(146, 125, 98, 0.763);
+  width: 99px;
+  height: 39px;
 }
 
 .menuNone{

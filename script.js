@@ -7,6 +7,11 @@ document.querySelectorAll("#tools button").forEach((btn) => {
   });
 });
 
+setTimeout(() => {
+  console.log(`5`);
+  createTiles(container);
+}, 7000);
+
 // Create all the tiles
 function createTiles(container) {
   for (let row = 0; row < 30; row++) {
@@ -75,10 +80,30 @@ function clickTool(tile) {
   }
 }
 
+function hideMenu() {
+  const newGame = document.getElementById("newGame");
+  const menu = document.getElementById("menu");
+  newGame.addEventListener("click", (event) => {
+    menu.classList.add("menuNone");
+  });
+}
 
-const newGame = document.getElementById("newGame");
-const menu = document.getElementById("menu")
-newGame.addEventListener("click", (event) => {
+function initGame() {
+  container.textContent = "";
+  selectedTool = "";
+  changeCursor(selectedTool);
+  createTiles(container);
+  hideMenu();
+}
+
+newGame.addEventListener("click", initGame());
+newWorld.addEventListener("click", () => initGame());
+
+continueGame.addEventListener("click", () => {
+  menu.classList.toggle("menuNone");
+});
+
+BackMenu.addEventListener("click", () => {
   menu.classList.toggle("menuNone");
 });
 
