@@ -61,18 +61,18 @@ function runTests() {
   });
   
   // Test getTopCells
-  test('getTopCells returns correct cells', () => {
+  test('getTopCells returns correct cells (Y increases upward)', () => {
     const cell = new Cell(5, 10);
     const top = cell.getTopCells(2);
-    const expected = [new Cell(5, 9), new Cell(5, 8)];
+    const expected = [new Cell(5, 11), new Cell(5, 12)]; // Y increases upward
     assertArrayEqual(top, expected, 'top cells');
   });
   
   // Test getBottomCells
-  test('getBottomCells returns correct cells', () => {
+  test('getBottomCells returns correct cells (Y decreases downward)', () => {
     const cell = new Cell(5, 10);
     const bottom = cell.getBottomCells(2);
-    const expected = [new Cell(5, 11), new Cell(5, 12)];
+    const expected = [new Cell(5, 9), new Cell(5, 8)]; // Y decreases downward
     assertArrayEqual(bottom, expected, 'bottom cells');
   });
   
