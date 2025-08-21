@@ -32,6 +32,15 @@ body {
   background-size: cover;
 }
 
+.oak-log {
+  background-image: url("assets/images/blocks/oak-log.webp");
+  background-size: cover;
+}
+.oak-leaves {
+  background-image: url("assets/images/blocks/oak-leaves.webp");
+  background-size: cover;
+}
+
 .cell:hover {
   border: 0.5px solid black;
 }

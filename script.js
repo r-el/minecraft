@@ -1,3 +1,5 @@
+import { addRandomTrees } from "./utils/treeGenerator.js";
+
 let selectedTool = "";
 document.querySelectorAll("#tools button").forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -17,16 +19,22 @@ function createTiles(container) {
   for (let row = 0; row < 30; row++) {
     for (let col = 0; col < 100; col++) {
       const tile = document.createElement("div");
+      // New coordinate system:
+      // Y=0 is bottom row, increases upward
+      // X is column (left to right)
+      const x = col;
+      const y = 29 - row; // Convert row to Y coordinate (bottom-up)
+      tile.id = `${y},${x}`;
       tile.classList.add("cell");
 
-      // grass
-      if (row === 11) tile.classList.add("grass");
-      // Dirt
-      else if (row >= 12 && row <= 15) tile.classList.add("dirt");
+      // grass (y=18 from bottom, which is the grass level)
+      if (y == 18) tile.classList.add("grass");
+      // Dirt  
+      else if (y >= 14 && y <= 17) tile.classList.add("dirt");
       // Stone
-      else if (row >= 16 && row <= 28) tile.classList.add("stone");
+      else if (y >= 1 && y <= 13) tile.classList.add("stone");
       // bedrock
-      else if (row >= 29) tile.classList.add("bedrock");
+      else if (y == 0) tile.classList.add("bedrock");
       tile.addEventListener("click", () => {
         clickTool(tile);
       });
@@ -115,3 +123,11 @@ function changeCursor(selectedTool) {
     container.style.cursor = "default";
   }
 }
+
+// Add random trees with proper spacing using new coordinate system
+addRandomTrees(10, {
+  grassY: 18, // Updated grass level
+  gridWidth: 100,
+  minDistance: 10,
+  maxAttempts: 100
+});
