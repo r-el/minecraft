@@ -189,7 +189,7 @@ function changeCursor(selected) {
   if (selectedTool) {
     container.style.cursor = `url(./assets/images/cursor/${selectedTool}.png), default`;
   } else if (selectedItem) {
-    container.style.cursor = `url(./assets/images/blocks/${selectedItem}.webp), default`;
+    container.style.cursor = `url(./assets/images/cursor/${selectedItem}.png), default`;
   } else {
     container.style.cursor = "default";
   }
