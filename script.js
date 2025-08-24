@@ -8,7 +8,7 @@ document.querySelectorAll("#tools button").forEach((btn) => {
   btn.addEventListener("click", () => {
     selectedTool = btn.dataset.tool;
     selectedItem = ""; // Clear selected item when tool is selected
-    changeCursor(selectedTool);
+    changeCursor();
     console.log("Select Tool:", selectedTool);
   });
 });
@@ -17,10 +17,11 @@ document.querySelectorAll("#tools button").forEach((btn) => {
 document.querySelectorAll("#inventory button").forEach((btn) => {
   btn.addEventListener("click", () => {
     const item = btn.dataset.item;
-    if (inventory[item] > 0) { // Only select if we have items
+    if (inventory[item] > 0) {
+      // Only select if we have items
       selectedItem = item;
       selectedTool = ""; // Clear selected tool when item is selected
-      changeCursor(selectedItem);
+      changeCursor();
       console.log("Select Item:", selectedItem);
     }
   });
@@ -28,7 +29,7 @@ document.querySelectorAll("#inventory button").forEach((btn) => {
 
 // Create all the tiles
 function createTiles(container) {
-  let tile = ""
+  let tile = "";
   for (let row = 0; row < 30; row++) {
     for (let col = 0; col < 100; col++) {
       tile = document.createElement("div");
@@ -70,14 +71,14 @@ function updateInventoryDisplay() {
     const item = btn.dataset.item;
     const countSpan = btn.querySelector(".item-count");
     countSpan.textContent = inventory[item];
-    
+
     // Disable button if no items available
     btn.disabled = inventory[item] === 0;
   });
 }
 
 container.addEventListener("click", (event) => {
-    clickTool(event.target);
+  clickTool(event.target);
 });
 
 function clickTool(tile) {
@@ -85,7 +86,7 @@ function clickTool(tile) {
   if (selectedItem) {
     // Check if tile is empty (no background class except basic cell)
     const hasBlock = tile.classList.length > 1; // More than just 'cell' class
-    
+
     if (!hasBlock && inventory[selectedItem] > 0) {
       // Add the item class to the tile
       if (selectedItem === "oaklog") {
@@ -95,18 +96,20 @@ function clickTool(tile) {
       } else {
         tile.classList.add(selectedItem);
       }
-      
+
       // Reduce inventory count
       inventory[selectedItem] -= 1;
       updateInventoryDisplay();
-      
+
       // Clear selection if no more items
       if (inventory[selectedItem] === 0) {
         selectedItem = "";
-        changeCursor("");
+        changeCursor();
       }
-      
-      console.log(`Placed ${selectedItem}, remaining: ${inventory[selectedItem]}`);
+
+      console.log(
+        `Placed ${selectedItem}, remaining: ${inventory[selectedItem]}`
+      );
     }
     return;
   }
@@ -161,7 +164,7 @@ function initGame() {
   container.textContent = "";
   selectedTool = "";
   selectedItem = "";
-  changeCursor("");
+  changeCursor();
   createTiles(container);
   updateInventoryDisplay();
   addRandomTrees(10, {
@@ -185,11 +188,11 @@ BackMenu.addEventListener("click", () => {
 });
 
 // Change the cursor style based on the selected tool or item
-function changeCursor(selected) {
+function changeCursor() {
   if (selectedTool) {
     container.style.cursor = `url(./assets/images/cursor/${selectedTool}.png), default`;
   } else if (selectedItem) {
-    container.style.cursor = `url(./assets/images/blocks/${selectedItem}.webp), default`;
+    container.style.cursor = `url(./assets/images/cursor/${selectedItem}.png), default`;
   } else {
     container.style.cursor = "default";
   }
